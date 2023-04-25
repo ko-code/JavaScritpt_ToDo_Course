@@ -1,6 +1,6 @@
 import { Todo } from "../todos/models/todo.models";
 
-const filters = {
+const Filters = {
     All: 'all',
     Completed: 'completed',
     Pending: 'pending'
@@ -15,7 +15,7 @@ const state = {
         new Todo('Piedra del poder'),
         new Todo('Piedra del realidad'),
     ],
-    filter: filters.All,
+    filter: Filters.All,
 }
 
 const initStore = () =>{
@@ -35,18 +35,18 @@ const addTodo = (description) =>{
 
 const getTodos = (filter = Filters.All) =>{
     
-    switch(filters) {
+    switch(filter) {
         case Filters.All:
             return [...state.todos];
         
         case Filters.Completed:
-            return state.todos.filter( todo =>{todo.done});
+            return state.todos.filter( todo =>todo.done);
 
         case Filters.Pending:
-            return state.todos.filter(todo => {!todo.done});
+            return state.todos.filter(todo => !todo.done);
 
         default:
-            throw new Error(`${filter} is not valid`)
+            throw new Error(`Option ${filter} is not valid`);
     }
 }
 
@@ -54,10 +54,10 @@ const toggleTodo = (todoId) =>{
     
     state.todos = state.todos.map(todo =>{
         if(todo.id === todoId) {
-            todo.done === !todo.done;
+            todo.done = !todo.done;
         }
         return todo;
-    })
+    });
 }
 
 const deleteTodo = (todoId) =>{
