@@ -5,7 +5,8 @@ import { renderTodos } from './use-cases/render-todos';
 
 const ElementIDs  ={
     TodoList: '.todo-list',
-    NewTodoInput: '#new-todo-input'
+    NewTodoInput: '#new-todo-input',
+    DestroyTodo: '.view',
 }
 
 export const App = (elementId) =>{
@@ -27,6 +28,7 @@ export const App = (elementId) =>{
 //  Referencias HTML
 const newDescriptionInput = document.querySelector(ElementIDs.NewTodoInput);
 const todoListUl = document.querySelector(ElementIDs.TodoList);
+const destroyTodo = document.querySelector(ElementIDs.DestroyTodo);
 // Listerner
 
 newDescriptionInput.addEventListener('keyup', (event) =>{
@@ -44,4 +46,5 @@ todoListUl.addEventListener('click', (event) =>{
     todoStore.toggleTodo(element.getAttribute('data-id'));
     displayTodos();
 });
+
 }
